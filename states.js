@@ -1,6 +1,6 @@
 import StateMachine from "./state-machine/module.js";
 import {
-	canvas, context, colors, images, sounds, stateMachines, objects, settings,
+	canvas, context, images, sounds, stateMachines, objects, settings,
 	clear, clearSounds, render, loadResources,
 	Drawable, MuteButton, TextButton, TextToggle, Slider
 } from "./index.js";
@@ -89,7 +89,7 @@ const stateMachine = new StateMachine({
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280)));
 			const debugOffset = settings.debug ? 180 : 0;
 			objects.set("text", new Drawable(() => {
-				context.fillStyle = colors.text;
+				context.fillStyle = "black";
 				context.textAlign = "right";
 				context.fillText("Debug:", 600, 240 + 88);
 				context.fillText("Volume:", 600, 480 + 20 + debugOffset);
@@ -111,7 +111,7 @@ const stateMachine = new StateMachine({
 			clear();
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280)));
 			objects.set("help", new Drawable(() => {
-				context.fillStyle = colors.text;
+				context.fillStyle = "black";
 				context.fontSize = 6;
 				context.fillText("This game is a work-in-progress. There will be bugs!", 960, 280);
 			}));
@@ -122,7 +122,7 @@ const stateMachine = new StateMachine({
 			clear();
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280)));
 			objects.set("credits", new Drawable(() => {
-				context.fillStyle = colors.text;
+				context.fillStyle = "black";
 				context.fontSize = 12;
 				context.fillText("Everything", 960, 240);
 				context.fontSize = 8;

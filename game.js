@@ -1,5 +1,8 @@
-import {context, colors, stateMachines, objects, settings, Drawable} from "./index.js";
+import {context, stateMachines, objects, settings, Drawable} from "./index.js";
 // Constants
+const DEBUG_X = 200;
+const DEBUG_Y = 1260;
+const DEBUG_LINE_HEIGHT = 40;
 // State variables
 const heldKeys = new Set();
 let changed = true;
@@ -10,12 +13,9 @@ let fps = 0;
 // Game and level management
 function drawDebugText() {
 	changed = true;
-	context.fillStyle = colors.text;
+	context.fillStyle = "black";
 	context.font = "30px monospace";
 	const texts = {
-		Center: `${character.center.x.toFixed(4)}, ${character.center.y.toFixed(4)}`,
-		Speed: `${character.speed.x.toFixed(2)}, ${character.speed.y.toFixed(2)}`,
-		Contacts: `${collisionCheck().some(Boolean) ? "T" : "F"}: ${collisionCheck().map((value) => value ? "T" : "F")}`,
 		FPS: `${fps.toFixed(2)}`,
 		Time: `${(time / 1000).toFixed(3)} seconds`
 	};

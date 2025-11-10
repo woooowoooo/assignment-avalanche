@@ -4,17 +4,6 @@ canvas.width = 1920;
 canvas.height = 1280;
 const context = canvas.getContext("2d");
 context.imageSmoothingEnabled = false;
-// Colors
-const colors = {
-	background1: "hsl(220, 25%, 90%)",
-	background2: "hsl(210, 15%, 75%)",
-	character: "hsl(210, 65%, 85%)",
-	accent: "hsl(30, 90%, 55%)",
-	widget1: "hsl(0, 0%, 80%)",
-	widget2: "hsl(0, 0%, 70%)",
-	widget3: "hsl(0, 0%, 60%)",
-	text: "black"
-};
 // Variables
 const mouse = {
 	x: 0,
@@ -91,6 +80,8 @@ export async function loadResources() {
 	const imageData = {
 		background: "png",
 		button: "png",
+		slide: "png",
+		slider: "png",
 		soundOff: "png",
 		soundOn: "png"
 	};
@@ -165,7 +156,7 @@ export class TextButton extends Button {
 			context.fillStyle = "black";
 			context.fontSize = 8;
 			context.textAlign = "center";
-			context.fillText(text, x, y + 88);
+			context.fillText(text, x, y + 112);
 		}
 		super(hitbox, draw, callback);
 	}
@@ -181,28 +172,16 @@ export class TextToggle extends TextButton {
 	}
 }
 export class Slider extends Drawable {
-	static THICKNESS = 12;
-	static HEIGHT = 36;
 	constructor (x, y, width, settingName, start, end, step = 1, intValues = true, callback) {
 		function draw() {
 			// Slider bar
-			context.fillStyle = colors.widget2;
-			context.fillRect(x - width / 2, y - Slider.THICKNESS / 3, width, Slider.THICKNESS * 2 / 3);
-			// Tick marks
-			const divisions = (end - start) / step;
-			for (let i = 0; i <= divisions; i++) {
-				context.fillRect(x - width / 2 + i * width / divisions - Slider.THICKNESS / 2, y - Slider.HEIGHT / 3, Slider.THICKNESS, Slider.HEIGHT * 2 / 3);
-			}
-			// End ticks
-			context.fillStyle = colors.widget3;
-			context.fillRect(x - width / 2 - Slider.THICKNESS / 2, y - Slider.HEIGHT / 2, Slider.THICKNESS, Slider.HEIGHT);
-			context.fillRect(x + width / 2 - Slider.THICKNESS / 2, y - Slider.HEIGHT / 2, Slider.THICKNESS, Slider.HEIGHT);
+			context.drawImage(images.slide, x - width / 2, y - 20, width, 40);
 			// Slider
-			context.fillStyle = colors.accent;
 			const position = (settings[settingName] - start) / (end - start) * width + x - width / 2;
-			context.fillRect(position - 20, y - 32, 40, 64);
+			context.drawImage(images.slider, position - 32, y - 40, 64, 80);
+			// Labels
 			context.fontSize = 6;
-			context.fillStyle = colors.text;
+			context.fillStyle = "black";
 			context.textAlign = "right";
 			context.fillText(start, x - width / 2 - 40, y + 20);
 			context.textAlign = "left";
@@ -290,4 +269,4 @@ export class TextInput extends Button {
 		self = this;
 	}
 }
-export {canvas, context, colors, images, sounds, stateMachines, objects, settings};
+export {canvas, context, images, sounds, stateMachines, objects, settings};
