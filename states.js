@@ -77,6 +77,7 @@ const stateMachine = new StateMachine({
 		onMenu() {
 			clear();
 			sounds.screams.play();
+			sounds.screams.loop = true;
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280)));
 			objects.set("start", new TextButton(840, 720, "Start", stateMachine.start, 560));
 			objects.set("settings", new TextButton(840, 960, "Settings", stateMachine.toSettings, 560));
