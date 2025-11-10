@@ -78,10 +78,10 @@ const stateMachine = new StateMachine({
 			clear();
 			sounds.screams.play();
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280)));
-			objects.set("start", new TextButton(960, 560, "Start", stateMachine.start, 640));
-			objects.set("settings", new TextButton(960, 720, "Settings", stateMachine.toSettings, 640));
-			objects.set("help", new TextButton(960, 880, "Help", stateMachine.toHelp, 640));
-			objects.set("credits", new TextButton(960, 1040, "Credits", stateMachine.toCredits, 640));
+			objects.set("start", new TextButton(840, 720, "Start", stateMachine.start, 560));
+			objects.set("settings", new TextButton(840, 960, "Settings", stateMachine.toSettings, 560));
+			objects.set("help", new TextButton(1440, 720, "Help", stateMachine.toHelp, 560));
+			objects.set("credits", new TextButton(1440, 960, "Credits", stateMachine.toCredits, 560));
 			objects.set("mute", new MuteButton());
 		},
 		onSettings() {
