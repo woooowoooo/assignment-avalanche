@@ -33,21 +33,21 @@ const defaultSettings = {
 	muted: false,
 	volume: 100
 };
-const settings = new Proxy(JSON.parse(localStorage.getItem("frozenSettings")) ?? defaultSettings, {
+const settings = new Proxy(JSON.parse(localStorage.getItem("assSettings")) ?? defaultSettings, {
 	get: function (_, property) {
 		return Reflect.get(...arguments) ?? defaultSettings[property];
 	},
 	set: function (target, property, value) {
 		console.log(`${property} has been set to ${value}`);
 		const valid = Reflect.set(...arguments);
-		localStorage.setItem("frozenSettings", JSON.stringify(target));
+		localStorage.setItem("assSettings", JSON.stringify(target));
 		return valid;
 	}
 });
 // Helper functions
 Object.defineProperty(context, "fontSize", {
 	set: size => {
-		context.font = `500 ${size * 10}px Raleway, sans-serif`; // TODO: Update font
+		context.font = `500 ${size * 10}px Comic Sans MS, Comic Sans, cursive`;
 	}
 });
 export function clear() {
@@ -90,13 +90,12 @@ canvas.addEventListener("click", getMousePosition);
 export async function loadResources() {
 	const imageData = {
 		background: "png",
+		button: "png",
 		soundOff: "png",
 		soundOn: "png"
 	};
 	const soundData = {
-		goldbergAria: "mp3",
-		goldbergVar1: "mp3",
-		death: "mp3"
+		screams: "mp3"
 	};
 	const promises = [];
 	const initialize = function (cache, id, path, type, eventType) {
@@ -159,14 +158,11 @@ export class MuteButton extends Button {
 export class TextButton extends Button {
 	constructor (x, y, text, callback, width) {
 		const hitbox = new Path2D();
-		hitbox.rect(x - width / 2, y, width, 128);
+		hitbox.rect(x - width / 2, y, width, 160);
 		hitbox.closePath();
 		function draw() {
-			context.fillStyle = colors.widget1;
-			context.fill(hitbox);
-			context.fillStyle = colors.widget3;
-			context.fillRect(x - width / 2, y + 112, width, 16);
-			context.fillStyle = colors.text;
+			context.drawImage(images.button, x - width / 2, y, width, 160);
+			context.fillStyle = "black";
 			context.fontSize = 8;
 			context.textAlign = "center";
 			context.fillText(text, x, y + 88);

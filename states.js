@@ -76,13 +76,8 @@ const stateMachine = new StateMachine({
 		},
 		onMenu() {
 			clear();
-			sounds.goldbergAria.play();
+			sounds.screams.play();
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280)));
-			objects.set("title", new Drawable(() => {
-				context.fillStyle = colors.text;
-				context.fontSize = 16;
-				context.fillText("“it will be the goat”", 960, 360);
-			}));
 			objects.set("start", new TextButton(960, 560, "Start", stateMachine.start, 640));
 			objects.set("settings", new TextButton(960, 720, "Settings", stateMachine.toSettings, 640));
 			objects.set("help", new TextButton(960, 880, "Help", stateMachine.toHelp, 640));
@@ -132,17 +127,6 @@ const stateMachine = new StateMachine({
 				context.fillText("Everything", 960, 240);
 				context.fontSize = 8;
 				context.fillText("woooowoooo", 960, 340);
-				context.fontSize = 10;
-				context.fillText("Music", 560, 560);
-				context.fillText("Font", 1360, 560);
-				context.fontSize = 6;
-				context.fillText("Goldberg Variations: Aria, Var. 1", 560, 640);
-				context.fillText("Raleway", 1360, 640);
-				context.fontSize = 4;
-				context.fillText("Johann Sebastian Bach", 560, 700);
-				context.fillText("(performed by Kimiko Ishizaka)", 560, 740);
-				context.fillText("Matt McInerney", 1360, 700);
-				context.fillText("(The League of Moveable Type)", 1360, 740);
 			}));
 			objects.set("return", new TextButton(960, 880, "Return", stateMachine.toMenu, 640));
 			objects.set("mute", new MuteButton());
@@ -150,7 +134,7 @@ const stateMachine = new StateMachine({
 		onGame() {
 			clear();
 			clearSounds();
-			sounds.goldbergVar1.play();
+			sounds.screams.play();
 			window.addEventListener("keydown", onKeyDown);
 			window.addEventListener("keyup", onKeyUp);
 			objects.set("background", new Drawable(() => context.drawImage(images.background, 0, 0, 1920, 1280))); // Placeholder, replaced in game

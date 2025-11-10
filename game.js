@@ -1,4 +1,4 @@
-import {context, colors, images, sounds, stateMachines, objects, settings, Drawable} from "./index.js";
+import {context, colors, stateMachines, objects, settings, Drawable} from "./index.js";
 // Constants
 // State variables
 const heldKeys = new Set();
